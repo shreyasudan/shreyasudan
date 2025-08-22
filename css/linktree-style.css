@@ -24,6 +24,83 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-gradient: linear-gradient(135deg, #1a1612 0%, #2a2621 50%, #3d3730 100%) !important;
+        --secondary-gradient: linear-gradient(135deg, #DCA1A1 0%, #D49494 100%) !important;
+        --accent-gradient: linear-gradient(135deg, #C78B8B 0%, #B97A7A 100%) !important;
+        --dusty-rose: linear-gradient(135deg, #DCA1A1 0%, #D49494 100%) !important;
+        --light-beige: linear-gradient(135deg, #3d3730 0%, #332f28 100%) !important;
+        --medium-rose: linear-gradient(135deg, #C78B8B 0%, #B97A7A 100%) !important;
+        --dark-rose: linear-gradient(135deg, #A86B6B 0%, #954D4D 100%) !important;
+        
+        --text-primary: #f0e6d2 !important;
+        --text-secondary: #d4c4a8 !important;
+        --text-light: #ffffff !important;
+        --text-accent: #DCA1A1 !important;
+        --text-banner: #f5f0e8 !important;
+        --text-heading: #f0e6d2 !important;
+        
+        --card-bg: rgba(45, 39, 32, 0.9) !important;
+        --card-border: rgba(220, 161, 161, 0.4) !important;
+        --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+        --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.4) !important;
+    }
+    
+    /* Dark mode body and background */
+    body {
+        background: linear-gradient(135deg, #1a1612 0%, #2a2621 50%, #3d3730 100%) !important;
+        color: #f0e6d2 !important;
+    }
+    
+    body::before {
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(26, 22, 18, 0.9) 0%, transparent 60%),
+            radial-gradient(circle at 80% 20%, rgba(220, 161, 161, 0.1) 0%, transparent 60%),
+            radial-gradient(circle at 50% 80%, rgba(199, 139, 139, 0.08) 0%, transparent 70%),
+            radial-gradient(circle at 30% 30%, rgba(168, 107, 107, 0.05) 0%, transparent 60%) !important;
+    }
+    
+    /* Dark mode navbar */
+    .navbar {
+        background: rgba(26, 22, 18, 0.95) !important;
+        backdrop-filter: blur(20px);
+    }
+    
+    /* Dark mode banner */
+    .banner-header {
+        background: rgba(26, 22, 18, 0.8) !important;
+    }
+    
+    .banner-header::before {
+        background: linear-gradient(135deg, rgba(220, 161, 161, 0.03) 0%, rgba(199, 139, 139, 0.03) 100%) !important;
+    }
+    
+    /* Dark mode mobile menu */
+    .nav-menu {
+        background: rgba(26, 22, 18, 0.98) !important;
+    }
+    
+    /* Ensure all text elements are visible */
+    .banner-title,
+    .banner-subtitle,
+    .banner-description,
+    .section-title,
+    h1, h2, h3, h4, h5, h6,
+    p, span, div {
+        color: var(--text-primary) !important;
+    }
+    
+    .banner-subtitle {
+        color: var(--text-accent) !important;
+    }
+    
+    .banner-description {
+        color: var(--text-secondary) !important;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -220,10 +297,11 @@ body {
 
 .banner-content {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 60px;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
     align-items: center;
     margin-bottom: 32px;
+    max-width: 1000px;
 }
 
 .banner-info {
@@ -300,6 +378,23 @@ body {
 .banner-avatar {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 20px 60px rgba(220, 161, 161, 0.4);
+    transition: var(--transition);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.profile-photo:hover {
+    transform: translateY(-8px) rotate(5deg);
+    box-shadow: 0 30px 80px rgba(220, 161, 161, 0.5);
 }
 
 .avatar-placeholder {
@@ -737,6 +832,8 @@ body {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
+        justify-items: center;
+        max-width: none;
     }
     
     .banner-title {
@@ -835,9 +932,13 @@ body {
         gap: 12px;
     }
     
+    .profile-photo,
     .avatar-placeholder {
-        width: 130px;
-        height: 130px;
+        width: 160px;
+        height: 160px;
+    }
+    
+    .avatar-placeholder {
         font-size: 2.8rem;
     }
     
